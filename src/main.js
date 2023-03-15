@@ -1,30 +1,41 @@
-/* eslint-disable */
 const VERSION = require('../package').version;
 
-import '../node_modules/ziggeo-client-sdk/build/ziggeo.css';
-import '../node_modules/ziggeo-client-sdk/build/ziggeo.js';
+import Vue from 'vue';
 
-import * as components from './components/index';
-import { setVueInstance } from "@/utils/config";
+import 'ziggeo-client-sdk/build/ziggeo.css';
+import 'ziggeo-client-sdk/build/ziggeo.js';
 
-const install = (instance) => {
-  setVueInstance(instance);
-  for (const componentKey in components) {
-    instance.use((components)[componentKey]);
-  }
-}
+import ZiggeoPlayer from 'Components/ZiggeoPlayer';
+import ZiggeoRecorder from 'Components/ZiggeoRecorder';
 
-const ziggeo = {
-  VERSION,
-  install
+const install = (Vue) => {
+    Vue.component("ziggeo-player", ZiggeoPlayer);
+    Vue.component("ziggeo-recorder", ZiggeoRecorder);
 };
 
-export default ziggeo;
-export * from './components';
+export {
+    ZiggeoRecorder,
+    ZiggeoPlayer
+}
 
-// if (typeof window !== 'undefined' && window.Vue) {
-//   window.Vue.use(install);
-//   if (install.installed) {
-//     install.installed = false;
-//   }
-// }
+/* -- Plugin definition & Auto-install -- */
+
+// Plugin
+const plugin = {
+    /* eslint-disable no-undef */
+    version: VERSION,
+    install,
+};
+
+export default plugin;
+
+// Auto-install
+let GlobalVue = null;
+if (typeof window !== 'undefined') {
+    GlobalVue = window.Vue
+} else if (typeof global !== 'undefined') {
+    GlobalVue = global.Vue
+}
+if (GlobalVue) {
+    GlobalVue.use(plugin)
+}

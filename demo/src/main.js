@@ -1,11 +1,10 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
-import router from "./routes";
 import Ziggeo from 'vue-ziggeo';
-import "../node_modules/vue-ziggeo/dist/vue-ziggeo.css";
 
-const app = createApp(App);
-app.use(router);
-app.use(Ziggeo);
+Vue.use(Ziggeo);
 
-app.mount('#app');
+new Vue({
+    el: '#app',
+    render: h => h(App),
+});
