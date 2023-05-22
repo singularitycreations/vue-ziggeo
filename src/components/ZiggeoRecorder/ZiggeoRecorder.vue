@@ -20,6 +20,8 @@
         created() {
             this.options = this._ziggeoAttributes();
 
+            console.log(this.options);
+
             let { screenOptions, applicationOptions } = this;
             let _applicationOptions = {...recorderApplicationDefaultOptions, ...applicationOptions};
             if (screenOptions) {

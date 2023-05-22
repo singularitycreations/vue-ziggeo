@@ -207,7 +207,10 @@ export const ziggeoRecorderAttributesPropTypes = {
     'disableseeking': Boolean,
     'disablepause': Boolean,
     'pauseonplay': Boolean,
-    'pausable': Boolean,
+    'pausable': {
+        type: Boolean,
+        default: true
+    },
     'onlyaudio': Boolean,
     'airplay': Boolean,
     'chromecast': Boolean,
