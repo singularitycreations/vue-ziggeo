@@ -56,6 +56,6 @@
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1",
-    "ziggeo-client-sdk": "^2.42.2"
+    "ziggeo-client-sdk": "^2.43.1"
   }
 }
